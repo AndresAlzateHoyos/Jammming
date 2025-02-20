@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 
-function SearchResults({results}) {
+function SearchResults({results, onAdd}) {
     if(results.length === 0) return null;
     return (
         <ul >
-        {results.map((el, index) => (
-            <li key={index}>{el}</li>
+        {results.map((song) => (
+            <li key={song.id}>
+                <span>{song.name} - {song.author}</span>
+                <button onClick={() => onAdd(song)}>+</button>
+            </li>
         ))}
         </ul>
     )
