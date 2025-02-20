@@ -52,6 +52,7 @@ function Playlist ({ playlist, onRemove }) {
                 </li>
             ))}
         </ul>
+        <button>Save to Spotify</button>
         </div>
     )
 };

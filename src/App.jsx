@@ -20,7 +20,8 @@ function App () {
       return;
     }
     const filtered = songs.filter(song => 
-      song.name.toLowerCase().includes(query.toLowerCase())
+      song.name.toLowerCase().includes(query.toLowerCase()) ||
+      song.author.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredResults(filtered);
   };

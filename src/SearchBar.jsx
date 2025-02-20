@@ -16,6 +16,7 @@ function SearchBar ({onSearch}) {
             onChange={handleChange}
             placeholder='Search for a song...'
             ></input>
+            <button>Search</button>
         </form>
     )
 };
