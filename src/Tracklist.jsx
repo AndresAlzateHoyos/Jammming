@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import Track from './Track';
 
-function Tracklist ({ results }) {
+function Tracklist ({ tracks, onAdd, onRemove, isRemoval }) {
     return (
-        <div>
-            {results.map(el => (
-                <ul key={el.id}>
-                    <li>{el.id}</li>
-                    <li>{el.name}</li>
-                    <li>{el.artist}</li>
-                    <li>{el.album}</li>
-                </ul>
+        <div className='Tracklist'>
+            {tracks.map(track => (
+                <Track
+                    key={track.id}
+                    track={track}
+                    onAdd={onAdd}
+                    onRemove={onRemove}
+                    isRemoval={isRemoval}
+                />
             ))}
         </div>
     )

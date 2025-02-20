@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Tracklist from './Tracklist';
 
 function SearchResults({results, onAdd}) {
     if(results.length === 0) return null;
     return (
-        <ul >
-        {results.map((song) => (
-            <li key={song.id}>
-                <span>{song.name} - {song.author}</span>
-                <button onClick={() => onAdd(song)}>+</button>
-            </li>
-        ))}
-        </ul>
+        <div>
+            <h2>Results</h2>
+            <Tracklist
+                tracks={results}
+                onAdd={onAdd}
+                isRemoval={false}
+            />   
+        </div>
     )
     };
 
