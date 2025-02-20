@@ -40,8 +40,6 @@ function App () {
       <h1>Jammming</h1>
       <SearchBar onSearch={handleSearch} />
       <SearchResults results={filteredResults} onAdd={addToPlaylist}/>
-
-      <h2>My Playlist</h2>
       <Playlist playlist={playlist} onRemove={removeFromPlaylist} />
     </div>
   )
