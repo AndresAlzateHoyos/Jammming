@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import Playlist from './Playlist';
+import React, { useState } from 'react';
+import SearchBar from './SearchBar/SearchBar';
+import SearchResults from './SearchResults/SearchResults';
+import Playlist from './Playlist/Playlist';
 
 
 function App () {
   const songs = [
-    { id: 1, name: "Bohemian Rhapsody", author: "Queen" },
-    { id: 2, name: "Hotel California", author: "Eagles" },
-    { id: 3, name: "Billie Jean", author: "Michael Jackson" },
-    { id: 4, name: "Smells Like Teen Spirit", author: "Nirvana" }
+    { id: 1, name: "Bohemian Rhapsody", author: "Queen", duration: "4:56" },
+    { id: 2, name: "Hotel California", author: "Eagles", duration: "6:31" },
+    { id: 3, name: "Billie Jean", author: "Michael Jackson", duration: "4:54" },
+    { id: 4, name: "Smells Like Teen Spirit", author: "Nirvana", duration: "5:01" }
 ];
   const [filteredResults, setFilteredResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);

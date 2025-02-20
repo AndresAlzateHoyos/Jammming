@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Track from './Track';
+import Track from '../Track/Track';
 
 function Tracklist ({ tracks, onAdd, onRemove, isRemoval }) {
     return (

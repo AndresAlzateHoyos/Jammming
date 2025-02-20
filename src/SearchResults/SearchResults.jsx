@@ -1,5 +1,5 @@
 import React from 'react';
-import Tracklist from './Tracklist';
+import Tracklist from '../Tracklist/Tracklist';
 
 function SearchResults({results, onAdd}) {
     if(results.length === 0) return null;
