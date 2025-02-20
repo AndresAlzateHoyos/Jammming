@@ -31,6 +31,10 @@ function App () {
     }
   }
 
+  const removeFromPlaylist = song => {
+    setPlaylist(playlist.filter(item => item.id !== song.id))
+  }
+
   return (
     <div>
       <h1>Jammming</h1>
@@ -38,7 +42,7 @@ function App () {
       <SearchResults results={filteredResults} onAdd={addToPlaylist}/>
 
       <h2>My Playlist</h2>
-      <Playlist playlist={playlist} />
+      <Playlist playlist={playlist} onRemove={removeFromPlaylist} />
     </div>
   )
 }
