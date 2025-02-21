@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Track.module.css';
 
 function Track ({ track, onAdd, onRemove, isRemoval }) {
     const handleClick = () => {
@@ -10,12 +11,12 @@ function Track ({ track, onAdd, onRemove, isRemoval }) {
     };
 
     return (
-        <div className='Track'>
+        <div className={`Track ${styles.Track}`}>
             <div className='Track-information'>
                 <h3>{track.name}</h3>
                 <p>{track.author}</p>
             </div>
-            <button className='Track-action' onClick={handleClick}>{isRemoval ? '-' : '+'}</button>
+            <button className={`Track-action ${styles.trackAction}`} onClick={handleClick}>{isRemoval ? '-' : '+'}</button>
         </div>
     )
 };

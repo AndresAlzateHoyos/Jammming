@@ -1,0 +1,37 @@
+form {
+    display: flex;
+    margin: 19.92px auto 19.92px auto;
+    align-items: center; /* Asegura que ambos elementos se alineen verticalmente */
+  }
+  
+  .input {
+    flex: 1;
+    border: 2px solid #DC143C;
+    border-right: none; /* Para unir visualmente el input y el botón */
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    height: 40px; /* Altura fija para coincidir con el botón de Spotify */
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  .button {
+    background-color: #DC143C;
+    color: white;
+    border: 2px solid #DC143C;
+    border-left: none; /* Para unir visualmente con el input */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    height: 40px; /* Altura fija para igualar al input */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  .button:hover {
+    background-color: #B01033; /* Un tono un poco más oscuro en hover */
+  }

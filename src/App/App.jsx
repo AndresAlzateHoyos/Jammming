@@ -38,25 +38,28 @@ function App () {
   }
 
   return (
-    <div
-    className={styles.container}
-    >
-    <div
-    className={styles.left}
-    >
-      <h1 className={styles.title}>Jammming</h1>
-      <SearchBar onSearch={handleSearch} />
-      <SearchResults results={filteredResults} onAdd={addToPlaylist}/>
-    </div>
-    <div
-    className={styles.right}
-    >
-      <Playlist
-        playlist={playlist}
-        onRemove={removeFromPlaylist}
-        
-      />
-    </div>
+    <div>
+      <h1 className={styles.jammmingtitle}>Jammming</h1>
+      <div
+        className={styles.container}
+      >
+        <div
+          className={styles.left}
+        >
+          
+          <SearchBar onSearch={handleSearch} />
+          <SearchResults results={filteredResults} onAdd={addToPlaylist}/>
+        </div>
+        <div
+          className={styles.right}
+        >
+          <Playlist
+            playlist={playlist}
+            onRemove={removeFromPlaylist}
+            className={styles.playlisttitle}
+        />
+        </div>
+      </div>
     </div>
   )
 }

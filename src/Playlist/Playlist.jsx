@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import styles from './Playlist.module.css';
 
-function Playlist ({ playlist, onRemove }) {
+function Playlist ({ playlist, onRemove, className }) {
 
     const [playlistName, setPlaylistName] = useState('My Playlist');
     const [isEditing, setIsEditing] = useState(false);
@@ -33,6 +34,7 @@ function Playlist ({ playlist, onRemove }) {
         <div>
         {isEditing ? (
             <input
+            className={styles.playlistName}
             type='text'
             value={playlistName}
             onChange={handleChange}
@@ -40,19 +42,21 @@ function Playlist ({ playlist, onRemove }) {
             onKeyDown={handleKeyDown}
             autoFocus />
         ) : (
-            <h2 onClick={handleNameClick} >{playlistName}</h2>
+            <h2 onClick={handleNameClick} className={className}>{playlistName}</h2>
         )
     }
         
         <ul>
             {playlist.map(el => (
                 <li key={el.id}>
-                    <strong>{el.name}</strong> - {el.author}
-                    <button onClick={() => onRemove(el)}>-</button>
+                    <div className={styles.playlistList}>
+                        <strong>{el.name}</strong> - {el.author}
+                        <button className={styles.removeButton} onClick={() => onRemove(el)}>-</button>
+                    </div>
                 </li>
             ))}
         </ul>
-        <button>Save to Spotify</button>
+        <button className={styles.saveToSpotifyButton}>Save to Spotify</button>
         </div>
     )
 };

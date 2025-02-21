@@ -1,0 +1,16 @@
+.Track {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trackAction {
+    display: block;
+    height: 10%;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 10px;
+    background-color: #DC143C;
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: bold;
+}

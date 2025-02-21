@@ -1,0 +1,45 @@
+.playlistName {
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.saveToSpotifyButton {
+    display: block;
+    margin: 20px auto;
+    background-color: #DC143C;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    height: 40px;  /* Fija la altura para que coincida con el SearchBar */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.saveToSpotifyButton:hover {
+    background-color: #B01033;
+}
+
+.removeButton {
+    background-color: #DC143C;
+    color: white;
+    display: block;
+    height: 30%;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 10px;
+    background-color: #DC143C;
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+  
+  .removeButton:hover {
+    background-color: #B01033; /* Un tono un poco más oscuro en hover */
+  }
+
+  .playlistList {
+    display: flex;
+  }
