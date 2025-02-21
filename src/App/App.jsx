@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar/SearchBar';
-import SearchResults from './SearchResults/SearchResults';
-import Playlist from './Playlist/Playlist';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
+import styles from './App.module.css'
 
 
 function App () {
@@ -37,11 +38,25 @@ function App () {
   }
 
   return (
-    <div>
-      <h1>Jammming</h1>
+    <div
+    className={styles.container}
+    >
+    <div
+    className={styles.left}
+    >
+      <h1 className={styles.title}>Jammming</h1>
       <SearchBar onSearch={handleSearch} />
       <SearchResults results={filteredResults} onAdd={addToPlaylist}/>
-      <Playlist playlist={playlist} onRemove={removeFromPlaylist} />
+    </div>
+    <div
+    className={styles.right}
+    >
+      <Playlist
+        playlist={playlist}
+        onRemove={removeFromPlaylist}
+        
+      />
+    </div>
     </div>
   )
 }

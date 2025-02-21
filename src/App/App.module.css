@@ -1,0 +1,17 @@
+/* App.module.css */
+.container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f8f8;      /* Un gris más claro y agradable */
+    margin: 2rem auto;             /* Más espacio vertical y centrado horizontal */
+    padding: 2rem;                 /* Más padding para darle aire al contenido */
+    width: 60%;                    /* Ajusta al porcentaje que prefieras */
+    max-width: 800px;             /* Para que no crezca demasiado en pantallas grandes */
+    border-radius: 8px;           /* Esquinas más redondeadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+  }
+
+  .title {
+    text-align: center;
+    background-color: red;
+  }

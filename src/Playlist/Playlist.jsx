@@ -40,7 +40,7 @@ function Playlist ({ playlist, onRemove }) {
             onKeyDown={handleKeyDown}
             autoFocus />
         ) : (
-            <h2 onClick={handleNameClick}>{playlistName}</h2>
+            <h2 onClick={handleNameClick} >{playlistName}</h2>
         )
     }
         
