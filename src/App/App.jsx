@@ -7,14 +7,24 @@ import styles from './App.module.css'
 
 function App () {
   const songs = [
-    { id: 1, name: "Bohemian Rhapsody", author: "Queen", duration: "4:56" },
-    { id: 2, name: "Hotel California", author: "Eagles", duration: "6:31" },
-    { id: 3, name: "Billie Jean", author: "Michael Jackson", duration: "4:54" },
-    { id: 4, name: "Smells Like Teen Spirit", author: "Nirvana", duration: "5:01" }
+    { id: 1, name: "Bohemian Rhapsody", author: "Queen", duration: "4:56", uri: "spotify:track:7tFiyTwD0nx5a1eklYtX2J" },
+    { id: 2, name: "Hotel California", author: "Eagles", duration: "6:31", uri: "spotify:track:40riOy7x9W7GXjyGp4pjAv" },
+    { id: 3, name: "Billie Jean", author: "Michael Jackson", duration: "4:54",uri: "spotify:track:3S2R0EVwBSAVMd5UMgKTL0" },
+    { id: 4, name: "Smells Like Teen Spirit", author: "Nirvana", duration: "5:01", uri: "spotify:track:am,fnfajhSJFHDZ8833akjsdkjhasfdas8" }
 ];
   const [filteredResults, setFilteredResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
-  const [playlistName, setPlaylistName] = useState('May Playlist');
+  const [playlistName, setPlaylistName] = useState('My Playlist');
+  
+  const savePlaylist = () => {
+    if (playlist.length === 0) return; 
+    
+    const trackURIs = playlist.map(track => track.uri);
+    console.log(trackURIs)
+    alert(`Saving ${playlistName} to Spotify: \n${trackURIs.join("\n")}`)
+    setPlaylist([]);
+    setPlaylistName('My Playlist')
+  };
 
   const updatePlaylistName = name => {
     setPlaylistName(name)
@@ -65,6 +75,7 @@ function App () {
             className={styles.playlisttitle}
             playlistName={playlistName}
             setPlaylistName={updatePlaylistName}
+            onSave={savePlaylist}
         />
         </div>
       </div>

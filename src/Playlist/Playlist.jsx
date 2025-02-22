@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Playlist.module.css';
 
-function Playlist ({ playlist, onRemove, playlistName, setPlaylistName, className }) {
+function Playlist ({ playlist, onRemove, playlistName, setPlaylistName, className, onSave }) {
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -10,7 +10,7 @@ function Playlist ({ playlist, onRemove, playlistName, setPlaylistName, classNam
     }
 
     const handleChange = (event) => {
-        setPlaylistName(event.target.value)
+        setPlaylistName(event.target.value);
     };
 
     const handleBlur = () => {
@@ -19,6 +19,15 @@ function Playlist ({ playlist, onRemove, playlistName, setPlaylistName, classNam
         }
         setIsEditing(false);
     };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            if (playlistName.trim() === '') {
+                setPlaylistName('My Playlist');
+            }
+            setIsEditing(false);
+        }
+    }
 
     return (
         <div>
@@ -47,7 +56,7 @@ function Playlist ({ playlist, onRemove, playlistName, setPlaylistName, classNam
                 </li>
             ))}
         </ul>
-        <button className={styles.saveToSpotifyButton}>Save to Spotify</button>
+        <button className={styles.saveToSpotifyButton} onClick={onSave}>Save to Spotify</button>
         </div>
     )
 };
