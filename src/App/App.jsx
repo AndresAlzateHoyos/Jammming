@@ -14,12 +14,18 @@ function App () {
 ];
   const [filteredResults, setFilteredResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
+  const [playlistName, setPlaylistName] = useState('May Playlist');
+
+  const updatePlaylistName = name => {
+    setPlaylistName(name)
+  };
 
   const handleSearch = query => {
     if(!query) {
       setFilteredResults([]);
       return;
     }
+
     const filtered = songs.filter(song => 
       song.name.toLowerCase().includes(query.toLowerCase()) ||
       song.author.toLowerCase().includes(query.toLowerCase())
@@ -57,6 +63,8 @@ function App () {
             playlist={playlist}
             onRemove={removeFromPlaylist}
             className={styles.playlisttitle}
+            playlistName={playlistName}
+            setPlaylistName={updatePlaylistName}
         />
         </div>
       </div>
