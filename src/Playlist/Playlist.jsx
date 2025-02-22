@@ -50,7 +50,9 @@ function Playlist ({ playlist, onRemove, className }) {
             {playlist.map(el => (
                 <li key={el.id}>
                     <div className={styles.playlistList}>
-                        <strong>{el.name}</strong> - {el.author}
+                        <div className={styles.playlistTitleAuthor}>
+                            <h3>{el.name}</h3> {el.author}
+                        </div>
                         <button className={styles.removeButton} onClick={() => onRemove(el)}>-</button>
                     </div>
                 </li>
