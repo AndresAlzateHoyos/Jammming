@@ -3,6 +3,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import styles from './App.module.css'
+import Spotify from '../Spotify';
 
 
 function App () {
@@ -17,7 +18,13 @@ function App () {
   const [playlistName, setPlaylistName] = useState('My Playlist');
   
   const savePlaylist = () => {
-    if (playlist.length === 0) return; 
+    if (playlist.length === 0) return;
+
+    const accessToken = Spotify.getAccessToken();
+
+    sessionStorage.setItem('SavedPlaylist', JSON.stringify(playlist));
+    
+    console.log('Spotify Token Obtained', accessToken);
     
     const trackURIs = playlist.map(track => track.uri);
     console.log(trackURIs)
@@ -47,11 +54,11 @@ function App () {
     if(!playlist.some(item => item.id === song.id)) {
       setPlaylist([...playlist, song]);
     }
-  }
+  };
 
   const removeFromPlaylist = song => {
     setPlaylist(playlist.filter(item => item.id !== song.id))
-  }
+  };
 
   return (
     <div>
