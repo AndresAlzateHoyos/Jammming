@@ -7,12 +7,7 @@ import Spotify from '../Spotify';
 
 
 function App () {
-  const songs = [
-    { id: 1, name: "Bohemian Rhapsody", author: "Queen", duration: "4:56", uri: "spotify:track:7tFiyTwD0nx5a1eklYtX2J" },
-    { id: 2, name: "Hotel California", author: "Eagles", duration: "6:31", uri: "spotify:track:40riOy7x9W7GXjyGp4pjAv" },
-    { id: 3, name: "Billie Jean", author: "Michael Jackson", duration: "4:54",uri: "spotify:track:3S2R0EVwBSAVMd5UMgKTL0" },
-    { id: 4, name: "Smells Like Teen Spirit", author: "Nirvana", duration: "5:01", uri: "spotify:track:am,fnfajhSJFHDZ8833akjsdkjhasfdas8" }
-];
+
   const [filteredResults, setFilteredResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [playlistName, setPlaylistName] = useState('My Playlist');
@@ -37,17 +32,15 @@ function App () {
     setPlaylistName(name)
   };
 
-  const handleSearch = query => {
+  const handleSearch = async (query) => {
+    console.log('Searching for:', query);
     if(!query) {
       setFilteredResults([]);
       return;
     }
 
-    const filtered = songs.filter(song => 
-      song.name.toLowerCase().includes(query.toLowerCase()) ||
-      song.author.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredResults(filtered);
+    const searchResults = await Spotify.search(query);
+    setFilteredResults(searchResults);
   };
 
   const addToPlaylist = song => {
