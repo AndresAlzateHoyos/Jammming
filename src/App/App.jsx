@@ -12,20 +12,19 @@ function App () {
   const [playlist, setPlaylist] = useState([]);
   const [playlistName, setPlaylistName] = useState('My Playlist');
   
-  const savePlaylist = () => {
+  const savePlaylist = async () => {
     if (playlist.length === 0) return;
 
-    const accessToken = Spotify.getAccessToken();
-
-    sessionStorage.setItem('SavedPlaylist', JSON.stringify(playlist));
-    
-    console.log('Spotify Token Obtained', accessToken);
-    
     const trackURIs = playlist.map(track => track.uri);
-    console.log(trackURIs)
-    alert(`Saving ${playlistName} to Spotify: \n${trackURIs.join("\n")}`)
-    setPlaylist([]);
-    setPlaylistName('My Playlist')
+
+      try {
+        await Spotify.createPlaylist(playlistName, trackURIs);
+        setPlaylist([]);
+        setPlaylistName('My Playlist');
+        alert(`${playlistName} successfuly saved on Spotify!`)
+      } catch(error) {
+        console.error('Error saving playlist:', error);
+      };
   };
 
   const updatePlaylistName = name => {

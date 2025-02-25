@@ -1,7 +1,13 @@
 const clientId = "173f220ad8b0488ba4aeb96322d545de";
 const redirectUri = "http://localhost:5173/";
-const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=user-read-private user-read-email playlist-modify-public user-library-read user-library-modify&redirect_uri=${redirectUri}`;
+const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=user-read-private user-read-email playlist-modify-public playlist-modify-private user-library-read user-library-modify&redirect_uri=${redirectUri}`;
 let accessToken;
+
+function formatDuration (durationMs) {
+  const minutes = Math.floor(durationMs / 60000);
+  const seconds = Math.floor((durationMs % 60000) / 1000).toFixed(0);
+  return `${minutes}:${seconds < 10 ? '0' : ""}${seconds}`;
+}
 
 const Spotify = {
   getAccessToken() {
@@ -93,6 +99,7 @@ const Spotify = {
         name: track.name,
         artist: track.artists[0].name,
         album: track.album.name,
+        duration: formatDuration(track.duration_ms),
         uri: track.uri
       }));
     } catch (error) {
@@ -103,24 +110,50 @@ const Spotify = {
 
   async createPlaylist(playlistName, trackURIs) {
     const accessToken = this.getAccessToken();
-    if (!accessToken) return;
+    if (!accessToken) {
+      console.error('No access token available');
+      return;
+    }
 
     const headers = {
         Authorization: `Bearer ${accessToken}`,
         'Content-type' : 'application/json'
     };
 
-    const response = await fetch('https://api.spotify.com/v1/me', {
-        headers
-    });
+    try {
+      const userResponse = await fetch('https://api.spotify.com/v1/me', {headers});
+      if(!userResponse.ok) throw new Error('Failed to fetch user ID');
 
-    if (!response.ok) {
-        console.error('Error getting user ID:', response.statusText);
-        return;
+      const userData = await userResponse.json();
+      const userId = userData.id;
+
+      const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+            name: playlistName,
+            description: 'Playlist created using Jammming',
+            public: false
+        })
+      });
+
+      if(!playlistResponse.ok) throw new Error('Failed to create playlist');
+
+      const playlistData = await playlistResponse.json();
+      const playlistId = playlistData.id;
+
+      const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        method: 'POST',
+        headers,
+        body:JSON.stringify({ uris: trackURIs })
+      });
+
+      if (!addTracksResponse.ok) throw new Error('Failed to add tracks to playlist');
+
+      console.log(`Playlist "${playlistName}" successfuly created and songs added to it!`);
+    } catch (error) {
+        console.error('Error in createPlaylist:', error);
     }
-    
-    const userData = await response.json();
-    const userId = userData.id;
   }
 };
 

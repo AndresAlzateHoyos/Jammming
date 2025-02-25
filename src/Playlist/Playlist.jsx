@@ -49,7 +49,7 @@ function Playlist ({ playlist, onRemove, playlistName, setPlaylistName, classNam
                 <li key={el.id}>
                     <div className={styles.playlistList}>
                         <div className={styles.playlistTitleAuthor}>
-                            <h3>{el.name}</h3> {el.author}
+                            <h3>{el.name}</h3> {el.artist} • {el.duration}
                         </div>
                         <button className={styles.removeButton} onClick={() => onRemove(el)}>-</button>
                     </div>

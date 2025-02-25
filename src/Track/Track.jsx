@@ -14,7 +14,7 @@ function Track ({ track, onAdd, onRemove, isRemoval }) {
         <div className={`Track ${styles.Track}`}>
             <div className='Track-information'>
                 <h3>{track.name}</h3>
-                <p>{track.author}</p>
+                <p>{track.artist}  •  {track.duration}</p>
             </div>
             <button className={`Track-action ${styles.trackAction}`} onClick={handleClick}>{isRemoval ? '-' : '+'}</button>
         </div>
